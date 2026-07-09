@@ -5,8 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BAP Studios — Juegos y apps</title>
   <meta name="description" content="BAP Studios: juegos y apps para el navegador. Sin descargas — juega desde cualquier dispositivo con tu BAP ID.">
-  <link rel="icon" type="image/png" href="https://chibi.iitranq.co.uk/BmBfGROSXFdY.jpg">
-  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22BAP%20Studios%22%2C%22short_name%22%3A%22BAP%20Studios%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23000000%22%2C%22theme_color%22%3A%22%23000000%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fchibi.iitranq.co.uk%2FBmBfGROSXFdY.jpg%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fjpeg%22%7D%5D%7D">
+  <meta name="theme-color" content="#000000">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="BAP Studios">
+  <meta property="og:title" content="BAP Studios — Juegos y apps">
+  <meta property="og:description" content="Juegos y apps para el navegador. Sin descargas — juega desde cualquier dispositivo con tu BAP ID.">
+  <meta property="og:image" content="https://chibi.iitranq.co.uk/JGVbi0S7NWjd.jpg">
+  <meta property="og:url" content="https://fernandoaaa123.github.io/BAP-STUDIOS/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/png" href="https://chibi.iitranq.co.uk/JGVbi0S7NWjd.jpg">
+  <link rel="apple-touch-icon" href="https://chibi.iitranq.co.uk/JGVbi0S7NWjd.jpg">
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22BAP%20Studios%22%2C%22short_name%22%3A%22BAP%20Studios%22%2C%22start_url%22%3A%22https%3A//fernandoaaa123.github.io/BAP-STUDIOS/%22%2C%22scope%22%3A%22https%3A//fernandoaaa123.github.io/BAP-STUDIOS/%22%2C%22id%22%3A%22https%3A//fernandoaaa123.github.io/BAP-STUDIOS/%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23000000%22%2C%22theme_color%22%3A%22%23000000%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A//chibi.iitranq.co.uk/JGVbi0S7NWjd.jpg%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image/jpeg%22%7D%5D%7D">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -183,6 +195,7 @@
     .product-icon img{width:100%;height:100%;object-fit:cover;}
     .product-icon.empty{display:flex;align-items:center;justify-content:center;font-size:22px;opacity:.3;}
     .product-name{font-size:15px;font-weight:700;color:var(--t0);margin-bottom:3px;}
+    .product-bap{font-size:10px;font-weight:700;color:var(--t3);margin-left:7px;letter-spacing:.5px;vertical-align:1px;}
     .product-desc{font-size:12px;color:var(--t3);}
     .product-pill{
       margin-left:auto;flex-shrink:0;display:inline-block;cursor:pointer;
@@ -192,6 +205,13 @@
     }
     a.product-pill:hover{background:rgba(74,222,128,.16);border-color:rgba(74,222,128,.3);}
     .product-pill.soon{background:rgba(255,255,255,.04);color:var(--t3);border-color:var(--b);}
+    .product-cat-block{max-width:1100px;margin:0 auto;}
+    .product-cat-block + .product-cat-block{margin-top:48px;}
+    .product-cat-head{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+    .product-cat-head h3{font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--t2);}
+    .product-cat-icon{font-size:16px;line-height:1;}
+    .product-cat-block .products-grid{margin-top:0;}
+    #games .product-cat-block:first-of-type{margin-top:60px;}
 
     /* ─── HOW IT WORKS ─── */
     #how{background:var(--bg);}
@@ -425,7 +445,7 @@
   <!-- ═══════════ NAV ═══════════ -->
   <nav>
     <a class="nav-logo" href="#home" onclick="ui.showLanding();return true;">
-      <img src="https://chibi.iitranq.co.uk/BmBfGROSXFdY.jpg" alt="BAP Studios">
+      <img src="https://chibi.iitranq.co.uk/JGVbi0S7NWjd.jpg" alt="BAP Studios">
       <span>BAP Studios</span>
     </a>
     <div class="nav-links" id="nav-links">
@@ -444,7 +464,7 @@
   <!-- ═══════════ HERO ═══════════ -->
   <section class="hero" id="home">
     <div class="hero-badge"><span class="hero-badge-dot"></span>Estudio indie activo</div>
-    <div class="hero-logo"><img src="https://chibi.iitranq.co.uk/BmBfGROSXFdY.jpg" alt="BAP Studios"></div>
+    <div class="hero-logo"><img src="https://chibi.iitranq.co.uk/JGVbi0S7NWjd.jpg" alt="BAP Studios"></div>
     <h1>BAP Studios</h1>
     <p class="hero-sub">Hacemos juegos y apps para el navegador. Sin descargas, sin instalaciones — entra desde cualquier dispositivo y sigue justo donde lo dejaste.</p>
     <div class="hero-ctas">
@@ -469,47 +489,20 @@
       <h2 class="section-title">Nuestros juegos y apps</h2>
       <p style="color:var(--t2);font-size:15px;line-height:1.65;">Todo se juega directo en el navegador. Con tu BAP ID, tu progreso te sigue a donde vayas.</p>
     </div>
-    <div class="products-grid" id="games-grid">
-      <div class="product-card">
-        <div class="product-icon"><img src="https://uploads.onecompiler.io/447259qgx/44cxpnfu9/Vaso%20de%20Universo.png" alt="Cup O'Clicker"></div>
-        <div>
-          <div class="product-name">Cup O'Clicker</div>
-          <div class="product-desc">Juego · Sanjay and Craig</div>
-        </div>
-        <a class="product-pill" href="https://fernandoaaa123.github.io/sanjay-and-craig-cup-o-clicker/" target="_blank" rel="noopener" style="text-decoration:none;">Jugar</a>
+    <div class="product-cat-block">
+      <div class="product-cat-head">
+        <span class="product-cat-icon">🎮</span>
+        <h3>Juegos</h3>
       </div>
-      <div class="product-card">
-        <div class="product-icon"><img src="https://chibi.iitranq.co.uk/Y1OMxvpQecD2.png?v=2" alt="Nova"></div>
-        <div>
-          <div class="product-name">Nova</div>
-          <div class="product-desc">App · Chat y comunidades</div>
-        </div>
-        <a class="product-pill" href="https://fernandoaaa123.github.io/nova/" target="_blank" rel="noopener" style="text-decoration:none;">Abrir</a>
+      <div class="products-grid" id="games-grid-juegos"></div>
+    </div>
+
+    <div class="product-cat-block">
+      <div class="product-cat-head">
+        <span class="product-cat-icon">🧩</span>
+        <h3>Apps</h3>
       </div>
-      <div class="product-card">
-        <div class="product-icon"><img src="https://chibi.iitranq.co.uk/mw7fgng37rnJ.png" alt="Grudgeball Evolution"></div>
-        <div>
-          <div class="product-name">Grudgeball Evolution</div>
-          <div class="product-desc">Juego · Deportes · Regular Show</div>
-        </div>
-        <a class="product-pill" href="https://fernandoaaa123.github.io/regular-show-grudgeball-evolution/" target="_blank" rel="noopener" style="text-decoration:none;">Jugar</a>
-      </div>
-      <div class="product-card">
-        <div class="product-icon"><img src="https://upload.wikimedia.org/wikipedia/en/6/69/Breadwinners_title.png" alt="Breadwinners" onerror="this.parentElement.innerHTML='🍞'"></div>
-        <div>
-          <div class="product-name">Breadwinners: Bread Dash!</div>
-          <div class="product-desc">Juego · Runner infinito</div>
-        </div>
-        <span class="product-pill soon">Pronto</span>
-      </div>
-      <div class="product-card">
-        <div class="product-icon empty">+</div>
-        <div>
-          <div class="product-name" style="color:var(--t3);">Más próximamente</div>
-          <div class="product-desc">Nuevos juegos y apps</div>
-        </div>
-        <span class="product-pill soon">Pronto</span>
-      </div>
+      <div class="products-grid" id="games-grid-apps"></div>
     </div>
   </section>
 
@@ -718,47 +711,13 @@
       </button>
       <div class="modal-title">Catálogo de BAP Studios</div>
       <div class="modal-sub">Todos nuestros juegos y apps, con tu BAP ID vinculado.</div>
-      <div class="products-grid">
-        <div class="product-card">
-          <div class="product-icon"><img src="https://uploads.onecompiler.io/447259qgx/44cxpnfu9/Vaso%20de%20Universo.png" alt="Cup O'Clicker"></div>
-          <div>
-            <div class="product-name">Cup O'Clicker</div>
-            <div class="product-desc">Juego · Sanjay and Craig</div>
-          </div>
-          <span class="product-pill">Activo</span>
-        </div>
-        <div class="product-card">
-          <div class="product-icon"><img src="https://chibi.iitranq.co.uk/Y1OMxvpQecD2.png?v=2" alt="Nova"></div>
-          <div>
-            <div class="product-name">Nova</div>
-            <div class="product-desc">App · Chat y comunidades</div>
-          </div>
-          <span class="product-pill">Activo</span>
-        </div>
-        <div class="product-card">
-          <div class="product-icon"><img src="https://upload.wikimedia.org/wikipedia/en/6/69/Breadwinners_title.png" alt="Breadwinners" onerror="this.parentElement.innerHTML='🍞'"></div>
-          <div>
-            <div class="product-name">Breadwinners: Bread Dash!</div>
-            <div class="product-desc">Juego · Runner infinito</div>
-          </div>
-          <span class="product-pill soon">Pronto</span>
-        </div>
-        <div class="product-card">
-          <div class="product-icon"><img src="https://chibi.iitranq.co.uk/mw7fgng37rnJ.png" alt="Grudgeball Evolution"></div>
-          <div>
-            <div class="product-name">Grudgeball Evolution</div>
-            <div class="product-desc">Juego · Deportes · Regular Show</div>
-          </div>
-          <span class="product-pill">Activo</span>
-        </div>
-        <div class="product-card">
-          <div class="product-icon empty">+</div>
-          <div>
-            <div class="product-name" style="color:var(--t3);">Más próximamente</div>
-            <div class="product-desc">Nuevos juegos y apps</div>
-          </div>
-          <span class="product-pill soon">Pronto</span>
-        </div>
+      <div class="product-cat-block">
+        <div class="product-cat-head"><span class="product-cat-icon">🎮</span><h3>Juegos</h3></div>
+        <div class="products-grid" id="catalog-grid-juegos"></div>
+      </div>
+      <div class="product-cat-block">
+        <div class="product-cat-head"><span class="product-cat-icon">🧩</span><h3>Apps</h3></div>
+        <div class="products-grid" id="catalog-grid-apps"></div>
       </div>
     </div>
   </div>
@@ -797,7 +756,7 @@
   <!-- ═══════════ FOOTER ═══════════ -->
   <footer>
     <div class="footer-logo">
-      <img src="https://chibi.iitranq.co.uk/BmBfGROSXFdY.jpg" alt="BAP Studios">
+      <img src="https://chibi.iitranq.co.uk/JGVbi0S7NWjd.jpg" alt="BAP Studios">
       <span>BAP Studios</span>
     </div>
     <div class="footer-links">
@@ -858,43 +817,180 @@
     }
 
     // ── Catalog of all BAP products ──
+    // Orden = orden de código BAP (fecha de creación). Para reordenar, mueve
+    // las entradas de lugar aquí — no hay que tocar el HTML en ningún lado.
+    // Los juegos sin nombre confirmado se muestran como "???".
     const ALL_PRODUCTS = [
       {
+        bap: '#BAP001 · #BAP000',
         key: 'juego_principal',
+        type: 'juego',
         name: "Cup O'Clicker",
-        desc: 'Juego · Sanjay and Craig',
-        icon: 'https://uploads.onecompiler.io/447259qgx/44cxpnfu9/Vaso%20de%20Universo.png',
+        desc: 'Juego · Sanjay and Craig · incl. versión offline Classic (sin eventos)',
+        icon: 'https://chibi.iitranq.co.uk/jpxBDQNU31LM.jpg',
         hasCode: true,
         url: 'https://fernandoaaa123.github.io/sanjay-and-craig-cup-o-clicker/'
       },
       {
-        key: 'nova',
-        name: 'Nova',
-        desc: 'App · Chat y comunidades',
-        icon: 'https://chibi.iitranq.co.uk/Y1OMxvpQecD2.png?v=2',
-        hasCode: false,
-        alwaysConnected: true,
-        url: 'https://fernandoaaa123.github.io/nova/'
-      },
-      {
-        key: null,   // sin BAP ID aún
+        bap: '#BAP002',
+        key: null,
+        type: 'juego',
         name: 'Breadwinners: Bread Dash!',
         desc: 'Juego · Runner infinito',
         icon: 'https://upload.wikimedia.org/wikipedia/en/6/69/Breadwinners_title.png',
-        hasCode: false,
         comingSoon: true,
         url: '#'
       },
       {
+        bap: '#BAP003',
+        key: null,
+        type: 'juego',
+        name: '???',
+        desc: 'Juego · Adventure Time',
+        icon: null,
+        comingSoon: true,
+        url: '#'
+      },
+      {
+        bap: '#BAP004',
+        key: null,
+        type: 'juego',
+        name: 'Regular Show: Regular Day',
+        desc: 'Juego · Regular Show',
+        icon: null,
+        comingSoon: true,
+        url: '#'
+      },
+      {
+        bap: '#BAP005',
+        key: null,
+        type: 'juego',
+        name: 'Kick Buttowski: Extreme Stunt World',
+        desc: 'Juego · HTML perdido',
+        icon: null,
+        comingSoon: true,
+        url: '#'
+      },
+      {
+        bap: '#BAP006',
+        key: null,
+        type: 'juego',
+        name: 'Sanjay and Craig: Blackout Runner',
+        desc: 'Juego · Sanjay and Craig',
+        icon: null,
+        comingSoon: true,
+        url: '#'
+      },
+      {
+        bap: '#BAP007',
+        key: null,
+        type: 'juego',
+        name: "Breadwinners 'Night of The Living Bread': BREAD N' DREAD",
+        desc: 'Juego · Breadwinners',
+        icon: null,
+        comingSoon: true,
+        url: '#'
+      },
+      {
+        bap: '#BAP008',
+        key: null,
+        type: 'juego',
+        name: '???',
+        desc: 'Juego · Estilo Pokémon',
+        icon: null,
+        comingSoon: true,
+        url: '#'
+      },
+      {
+        bap: '#BAP009',
         key: 'grudgeball',
-        name: 'Regular Show Grudgeball Evolution',
+        type: 'juego',
+        name: 'Grudgeball Evolution',
         desc: 'Juego · Deportes · Regular Show',
         icon: 'https://chibi.iitranq.co.uk/mw7fgng37rnJ.png',
         hasCode: false,
         alwaysConnected: true,
         url: 'https://fernandoaaa123.github.io/regular-show-grudgeball-evolution/'
+      },
+      {
+        bap: '#BAP010',
+        key: 'nova',
+        type: 'app',
+        name: 'Communiter',
+        desc: 'App · Chat y comunidades',
+        icon: 'https://chibi.iitranq.co.uk/4muuVXzlNQ4F.jpg',
+        hasCode: false,
+        alwaysConnected: true,
+        url: 'https://fernandoaaa123.github.io/nova/'
+      },
+      {
+        bap: '#BAP011',
+        key: null,
+        type: 'app',
+        name: 'Communiter Creator',
+        desc: 'App · Gestión de bots',
+        icon: null,
+        comingSoon: true,
+        url: '#'
+      },
+      {
+        bap: '#BAP012',
+        key: null,
+        type: 'juego',
+        name: "Michael Jackson's Moonwalker Anthology",
+        desc: 'Juego · Anthology',
+        icon: 'https://chibi.iitranq.co.uk/Rqgbstu7hiye.jpg',
+        comingSoon: true,
+        url: '#'
       }
     ];
+
+    // ── Íconos de respaldo si la imagen del producto falla en cargar ──
+    const PRODUCT_FALLBACK_SVG = {
+      app:   '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="4"/><path d="M6 10v4M4 12h4"/><circle cx="15" cy="10" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg>',
+      juego: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="6"/><line x1="7" y1="12" x2="11" y2="12"/><line x1="9" y1="10" x2="9" y2="14"/><circle cx="16" cy="10.5" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg>'
+    };
+    // Se llama desde el atributo onerror de <img> — evita anidar comillas dobles del SVG dentro del propio atributo HTML
+    function handleProductIconError(imgEl, type){
+      const wrap = imgEl.parentElement;
+      wrap.classList.add('empty');
+      wrap.innerHTML = PRODUCT_FALLBACK_SVG[type] || PRODUCT_FALLBACK_SVG.juego;
+    }
+
+    // ── Tarjeta de producto (HTML) reutilizada por landing y catálogo ──
+    function productCardHTML(p){
+      const iconHTML = p.icon
+        ? '<div class="product-icon"><img src="'+p.icon+'" alt="'+p.name+'" onerror="handleProductIconError(this,\''+p.type+'\')"></div>'
+        : '<div class="product-icon empty">'+(PRODUCT_FALLBACK_SVG[p.type]||PRODUCT_FALLBACK_SVG.juego)+'</div>';
+      const pillHTML = p.comingSoon
+        ? '<span class="product-pill soon">Pronto</span>'
+        : '<a class="product-pill" href="'+p.url+'" target="_blank" rel="noopener" style="text-decoration:none;">'+(p.type==='app'?'Abrir':'Jugar')+'</a>';
+      const bapTag = p.bap ? '<span class="product-bap">'+p.bap+'</span>' : '';
+      return '<div class="product-card">'+iconHTML
+        +'<div><div class="product-name">'+p.name+bapTag+'</div><div class="product-desc">'+p.desc+'</div></div>'
+        +pillHTML+'</div>';
+    }
+
+    const MORE_SOON_CARD =
+      '<div class="product-card"><div class="product-icon empty">+</div>'
+      +'<div><div class="product-name" style="color:var(--t3);">Más próximamente</div>'
+      +'<div class="product-desc">Nuevos títulos en camino</div></div>'
+      +'<span class="product-pill soon">Pronto</span></div>';
+
+    // Renderiza la grid de una categoría dentro de un contenedor por id
+    function renderProductGrid(containerId, type){
+      const el = document.getElementById(containerId);
+      if(!el) return;
+      const items = ALL_PRODUCTS.filter(p => p.type === type);
+      el.innerHTML = items.map(productCardHTML).join('') + MORE_SOON_CARD;
+    }
+
+    function renderAllProductGrids(){
+      renderProductGrid('games-grid-juegos', 'juego');
+      renderProductGrid('games-grid-apps',   'app');
+      renderProductGrid('catalog-grid-juegos', 'juego');
+      renderProductGrid('catalog-grid-apps',   'app');
+    }
 
     function renderDashboard(linkedGames) {
       const connEl  = document.getElementById('dash-connected');
@@ -1199,6 +1295,8 @@
       const links=$('nav-links'); if(links) links.style.display=isApp?'none':'';
       $('auth-section').classList.toggle('visible',isApp);
     }
+
+    renderAllProductGrids();
 
     // ── Ruteo simple por hash: permite refrescar/compartir #login, #register o #dashboard ──
     (function routeFromHash(){
