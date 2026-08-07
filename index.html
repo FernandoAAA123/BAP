@@ -60,6 +60,23 @@
     .nav-links a{color:var(--t2);text-decoration:none;font-size:13px;font-weight:600;transition:color .12s;}
     .nav-links a:hover{color:var(--t0);}
     @media(max-width:760px){.nav-links{display:none;}}
+    .nav-hamburger{
+      display:none;background:transparent;border:1px solid var(--b2);border-radius:8px;
+      color:var(--t0);width:36px;height:36px;align-items:center;justify-content:center;
+      cursor:pointer;flex-shrink:0;
+    }
+    @media(max-width:760px){.nav-hamburger{display:flex;}}
+    .mobile-menu{
+      display:none;flex-direction:column;position:fixed;top:62px;left:0;right:0;z-index:899;
+      background:rgba(0,0,0,.96);backdrop-filter:blur(18px);border-bottom:1px solid var(--b);
+      padding:8px 5% 16px;
+    }
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{
+      color:var(--t1);text-decoration:none;font-size:15px;font-weight:600;
+      padding:14px 4px;border-bottom:1px solid var(--b);
+    }
+    .mobile-menu a:last-child{border-bottom:none;}
     .nav-ctas{display:flex;gap:8px;}
     .nav-btn{
       padding:7px 18px;border-radius:8px;font-size:13px;font-weight:700;
@@ -93,15 +110,6 @@
       pointer-events:none;
       mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,#000 40%,transparent 100%);
     }
-    .hero-badge{
-      display:inline-flex;align-items:center;gap:7px;
-      background:rgba(255,255,255,.06);border:1px solid var(--b2);
-      border-radius:30px;padding:5px 14px;
-      font-size:11.5px;font-weight:600;color:var(--t2);
-      letter-spacing:.5px;text-transform:uppercase;
-      margin-bottom:2rem;position:relative;z-index:1;
-    }
-    .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);}
     .hero-logo{
       width:96px;height:96px;border-radius:24px;
       border:1px solid rgba(255,255,255,.12);
@@ -176,43 +184,6 @@
     .bento-title{font-size:18px;font-weight:800;color:var(--t0);margin-bottom:8px;letter-spacing:-.3px;}
     .bento-text{font-size:14px;color:var(--t2);line-height:1.6;}
 
-    /* ─── PRODUCTS / GAMES ─── */
-    #games{background:var(--s1);}
-    .products-grid{
-      display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-      gap:12px;max-width:1100px;margin:60px auto 0;
-    }
-    .product-card{
-      background:var(--s1);border:1px solid var(--b);border-radius:16px;
-      padding:24px;display:flex;align-items:center;gap:16px;
-      transition:border-color .2s,transform .2s;
-    }
-    .product-card:hover{border-color:var(--b2);transform:translateY(-2px);}
-    .product-icon{
-      width:52px;height:52px;border-radius:14px;overflow:hidden;
-      flex-shrink:0;border:1px solid var(--b2);background:var(--s3);
-    }
-    .product-icon img{width:100%;height:100%;object-fit:cover;}
-    .product-icon.empty{display:flex;align-items:center;justify-content:center;font-size:22px;opacity:.3;}
-    .product-name{font-size:15px;font-weight:700;color:var(--t0);margin-bottom:3px;}
-    .product-bap{font-size:10px;font-weight:700;color:var(--t3);margin-left:7px;letter-spacing:.5px;vertical-align:1px;}
-    .product-desc{font-size:12px;color:var(--t3);}
-    .product-pill{
-      margin-left:auto;flex-shrink:0;display:inline-block;cursor:pointer;
-      font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;
-      background:rgba(74,222,128,.08);color:var(--green);
-      border:1px solid rgba(74,222,128,.18);transition:background .12s,border-color .12s;
-    }
-    a.product-pill:hover{background:rgba(74,222,128,.16);border-color:rgba(74,222,128,.3);}
-    .product-pill.soon{background:rgba(255,255,255,.04);color:var(--t3);border-color:var(--b);}
-    .product-cat-block{max-width:1100px;margin:0 auto;}
-    .product-cat-block + .product-cat-block{margin-top:48px;}
-    .product-cat-head{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
-    .product-cat-head h3{font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--t2);}
-    .product-cat-icon{font-size:16px;line-height:1;}
-    .product-cat-block .products-grid{margin-top:0;}
-    #games .product-cat-block:first-of-type{margin-top:60px;}
-
     /* ─── HOW IT WORKS ─── */
     #how{background:var(--bg);}
     .steps{
@@ -249,19 +220,20 @@
     .modal-overlay{
       position:fixed;inset:0;z-index:1000;
       background:rgba(5,5,10,.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-      display:flex;align-items:center;justify-content:center;padding:20px;
+      display:flex;align-items:stretch;justify-content:stretch;padding:0;
       opacity:0;pointer-events:none;transition:opacity .22s ease;
     }
     .modal-overlay.open{opacity:1;pointer-events:auto;}
     .modal-panel{
-      background:var(--s1);border:1px solid var(--b);border-radius:20px;
-      max-width:480px;width:100%;max-height:88vh;overflow-y:auto;
-      padding:28px 24px 24px;position:relative;
-      transform:translateY(24px) scale(.96);transition:transform .25s ease;
-      box-shadow:0 30px 80px rgba(0,0,0,.55);
+      background:var(--s1);border:none;border-radius:0;
+      max-width:100%;width:100%;height:100%;max-height:100%;overflow-y:auto;
+      padding:32px 8% calc(32px + env(safe-area-inset-bottom));position:relative;
+      transform:translateY(24px) scale(.98);transition:transform .25s ease;
+      box-shadow:none;
     }
     .modal-overlay.open .modal-panel{transform:translateY(0) scale(1);}
-    .modal-panel.wide{max-width:640px;}
+    .modal-panel .modal-inner{max-width:640px;margin:0 auto;}
+    .modal-panel.wide .modal-inner{max-width:900px;}
     .modal-close{
       position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;
       background:var(--s3);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;
@@ -395,6 +367,31 @@
     .li-pill{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,.05);color:var(--t2);border:1px solid var(--b);white-space:nowrap;}
     .li-pill.on{background:rgba(74,222,128,.08);color:var(--green);border-color:rgba(74,222,128,.2);}
 
+    /* ─── LOGROS ─── */
+    .ach-empty{font-size:13px;color:var(--t3);padding:16px 0;}
+    .ach-group{margin-bottom:18px;}
+    .ach-group-name{font-size:12px;font-weight:700;color:var(--t1);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;}
+    .ach-group-name span{font-size:10px;font-weight:600;color:var(--t3);}
+    .ach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;}
+    .ach-badge{background:var(--s2);border:1px solid var(--b);border-radius:10px;padding:10px;text-align:left;}
+    .ach-badge.locked{opacity:.5;}
+    .ach-top{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+    .ach-icon{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;background:var(--s3);border:1px solid var(--b2);}
+    .ach-name{font-size:12px;font-weight:700;color:var(--t0);line-height:1.25;}
+    .ach-desc{font-size:11px;color:var(--t3);line-height:1.4;margin-bottom:8px;min-height:28px;}
+    .ach-foot{display:flex;align-items:center;justify-content:space-between;}
+    .ach-rarity{font-size:9px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;padding:2px 7px;border-radius:20px;border:1px solid;display:inline-flex;align-items:center;gap:5px;}
+    .rshape{display:inline-block;width:8px;height:8px;flex-shrink:0;}
+    .rshape.common{border-radius:50%;background:#9ca3af;}
+    .rshape.uncommon{background:#a3e635;border-radius:2px;}
+    .rshape.rare{background:#60a5fa;border-radius:1px;transform:rotate(45deg);}
+    .rshape.ultra{background:#c084fc;clip-path:polygon(50% 0%,100% 35%,80% 100%,20% 100%,0% 35%);}
+    .ach-rarity.common{color:var(--t2);border-color:var(--b2);}
+    .ach-rarity.uncommon{color:#a3e635;border-color:rgba(163,230,53,.3);background:rgba(163,230,53,.08);}
+    .ach-rarity.rare{color:#60a5fa;border-color:rgba(96,165,250,.3);background:rgba(96,165,250,.08);}
+    .ach-rarity.ultra{color:#c084fc;border-color:rgba(192,132,252,.3);background:rgba(192,132,252,.08);}
+    .ach-pct{font-size:10px;color:var(--t3);font-weight:600;}
+
     .ghost-btn{width:100%;padding:10px;background:transparent;border:1px solid var(--b);border-radius:9px;font-size:13px;font-weight:500;color:var(--t2);cursor:pointer;font-family:inherit;transition:all .12s;}
     .ghost-btn:hover{border-color:rgba(255,255,255,.2);color:var(--t0);background:var(--s2);}
     .signout-btn{background:none;border:none;font-size:12px;color:var(--t3);cursor:pointer;font-family:inherit;padding:6px;transition:color .12s;margin-top:4px;}
@@ -435,6 +432,11 @@
       footer{flex-direction:column;text-align:center;}
       .footer-links{justify-content:center;}
     }
+    /* ─── Ajustes solo para móvil (los overlays ya son pantalla completa en todos los tamaños) ─── */
+    @media(max-width:600px){
+      .modal-panel{padding:24px 18px calc(24px + env(safe-area-inset-bottom));}
+      .modal-close{top:calc(16px + env(safe-area-inset-top));}
+    }
   </style>
 </head>
 <body>
@@ -449,7 +451,7 @@
       <span>BAP Studios</span>
     </a>
     <div class="nav-links" id="nav-links">
-      <a href="javascript:void(0)" onclick="ui.scrollToSection('games')">Juegos</a>
+      <a href="bap_hub.html">BAP HUB</a>
       <a href="javascript:void(0)" onclick="ui.scrollToSection('about')">Sobre nosotros</a>
       <a href="javascript:void(0)" onclick="ui.openMyGames()">Mi cuenta</a>
       <a href="javascript:void(0)" onclick="ui.showSupport()">Soporte</a>
@@ -458,20 +460,29 @@
       <button class="nav-btn ghost" onclick="ui.showAuth('login')">Iniciar sesión</button>
       <button class="nav-btn solid" onclick="ui.showAuth('register')">Crear BAP ID</button>
     </div>
+    <button class="nav-hamburger" id="nav-hamburger" onclick="ui.toggleMobileMenu()" aria-label="Abrir menú" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
   </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="bap_hub.html">BAP HUB</a>
+    <a href="javascript:void(0)" onclick="ui.closeMobileMenu();ui.scrollToSection('about')">Sobre nosotros</a>
+    <a href="javascript:void(0)" onclick="ui.closeMobileMenu();ui.openMyGames()">Mi cuenta</a>
+    <a href="javascript:void(0)" onclick="ui.closeMobileMenu();ui.showSupport()">Soporte</a>
+  </div>
 
   <main id="landing-view">
   <!-- ═══════════ HERO ═══════════ -->
   <section class="hero" id="home">
-    <div class="hero-badge"><span class="hero-badge-dot"></span>Estudio indie activo</div>
     <div class="hero-logo"><img src="https://chibi.iitranq.co.uk/JGVbi0S7NWjd.jpg" alt="BAP Studios"></div>
-    <h1>BAP Studios</h1>
+    <h1>BAP</h1>
     <p class="hero-sub">Hacemos juegos y apps para el navegador. Sin descargas, sin instalaciones — entra desde cualquier dispositivo y sigue justo donde lo dejaste.</p>
     <div class="hero-ctas">
-      <button class="btn-hero primary" onclick="ui.scrollToSection('games')">
+      <a class="btn-hero primary" href="bap_hub.html" style="text-decoration:none;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
         Ver nuestros juegos
-      </button>
+      </a>
       <button class="btn-hero secondary" onclick="ui.showAuth('register')">
         Crear BAP ID gratis
       </button>
@@ -479,30 +490,6 @@
     <div class="scroll-hint">
       <span>Saber más</span>
       <div class="scroll-arrow"></div>
-    </div>
-  </section>
-
-  <!-- ═══════════ NUESTROS JUEGOS (showcase principal) ═══════════ -->
-  <section id="games">
-    <div style="text-align:center;max-width:600px;margin:0 auto;">
-      <p class="section-label">Catálogo</p>
-      <h2 class="section-title">Nuestros juegos y apps</h2>
-      <p style="color:var(--t2);font-size:15px;line-height:1.65;">Todo se juega directo en el navegador. Con tu BAP ID, tu progreso te sigue a donde vayas.</p>
-    </div>
-    <div class="product-cat-block">
-      <div class="product-cat-head">
-        <span class="product-cat-icon">🎮</span>
-        <h3>Juegos</h3>
-      </div>
-      <div class="products-grid" id="games-grid-juegos"></div>
-    </div>
-
-    <div class="product-cat-block">
-      <div class="product-cat-head">
-        <span class="product-cat-icon">🧩</span>
-        <h3>Apps</h3>
-      </div>
-      <div class="products-grid" id="games-grid-apps"></div>
     </div>
   </section>
 
@@ -584,7 +571,7 @@
     <h2>Entra a jugar</h2>
     <p>Explora el catálogo de BAP Studios o crea tu BAP ID gratis en menos de un minuto.</p>
     <div class="hero-ctas">
-      <button class="btn-hero primary" onclick="ui.scrollToSection('games')">Ver juegos</button>
+      <a class="btn-hero primary" href="bap_hub.html" style="text-decoration:none;">Ver juegos</a>
       <button class="btn-hero secondary" onclick="ui.showAuth('register')">Crear BAP ID</button>
     </div>
   </section>
@@ -667,6 +654,13 @@
       <button class="modal-close" onclick="ui.closeDashboard()" aria-label="Cerrar">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
+      <div class="modal-inner">
+
+      <!-- Email verification banner -->
+      <div id="verify-banner" style="display:none;align-items:center;gap:10px;background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.25);border-radius:10px;padding:12px 14px;margin-bottom:20px;font-size:12.5px;color:#facc15;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+        <span style="flex:1;">Tu email aún no está verificado. <a href="javascript:void(0)" onclick="ui.resendVerification()" style="color:#facc15;font-weight:700;text-decoration:underline;">Reenviar verificación</a></span>
+      </div>
 
       <!-- User header -->
       <div style="display:flex;align-items:center;gap:16px;padding:4px 0 24px;border-bottom:1px solid var(--b);margin-bottom:28px;">
@@ -695,29 +689,52 @@
         <div id="dash-available" style="display:flex;flex-direction:column;gap:8px;"></div>
       </div>
 
+      <!-- Logros -->
+      <div style="margin-top:32px;">
+        <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:14px;">Logros</p>
+        <div id="dash-achievements"><div class="ach-empty">Cargando…</div></div>
+      </div>
+
       <!-- Manage -->
       <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--b);">
-        <button class="ghost-btn" style="margin-bottom:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Gestionar cuenta</button>
+        <button class="ghost-btn" style="margin-bottom:8px;" onclick="ui.showManageAccount()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Gestionar cuenta</button>
         <button class="ghost-btn" onclick="ui.signOut()" style="color:var(--t3);">Cerrar sesión</button>
+      </div>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════ CATÁLOGO (overlay tipo modal) ═══════════ -->
-  <div class="modal-overlay" id="catalog-overlay">
-    <div class="modal-panel wide">
-      <button class="modal-close" onclick="ui.closeCatalog()" aria-label="Cerrar">
+  <!-- ═══════════ GESTIONAR CUENTA (overlay tipo modal) ═══════════ -->
+  <div class="modal-overlay" id="manage-overlay">
+    <div class="modal-panel">
+      <button class="modal-close" onclick="ui.closeManageAccount()" aria-label="Cerrar">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
-      <div class="modal-title">Catálogo de BAP Studios</div>
-      <div class="modal-sub">Todos nuestros juegos y apps, con tu BAP ID vinculado.</div>
-      <div class="product-cat-block">
-        <div class="product-cat-head"><span class="product-cat-icon">🎮</span><h3>Juegos</h3></div>
-        <div class="products-grid" id="catalog-grid-juegos"></div>
+      <div class="modal-inner">
+      <div class="modal-title">Gestionar cuenta</div>
+      <div class="modal-sub">Actualiza tu información o gestiona el acceso a tu BAP ID.</div>
+
+      <div class="field"><label>Nombre</label><input type="text" id="m-name" placeholder="Tu nombre"></div>
+      <div class="msg" id="m-msg"></div>
+      <button class="btn-hero primary" style="width:100%;justify-content:center;margin-bottom:20px;" onclick="ui.saveAccountName()">Guardar cambios</button>
+
+      <div id="m-link-box" style="display:none;padding-top:16px;border-top:1px solid var(--b);margin-bottom:16px;">
+        <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin:16px 0 8px;">Vincular Cup O'Clicker</p>
+        <p style="font-size:12px;color:var(--t3);line-height:1.5;margin-bottom:12px;">¿Ya jugabas antes de crear tu BAP ID? Pega aquí el código que generas desde Ajustes dentro del juego para recuperar tu progreso.</p>
+        <div class="field"><input type="text" id="m-code" class="mono-input" placeholder="XXXX-XX-XXXX" maxlength="12" oninput="ui.formatCode(this)"></div>
+        <div class="msg" id="m-link-msg"></div>
+        <button class="ghost-btn" onclick="ui.linkGameCode()">Vincular</button>
       </div>
-      <div class="product-cat-block">
-        <div class="product-cat-head"><span class="product-cat-icon">🧩</span><h3>Apps</h3></div>
-        <div class="products-grid" id="catalog-grid-apps"></div>
+
+      <div style="padding-top:16px;border-top:1px solid var(--b);margin-bottom:16px;">
+        <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin:16px 0 12px;">Seguridad</p>
+        <button class="ghost-btn" onclick="ui.sendPasswordReset()">Enviar email para cambiar contraseña</button>
+      </div>
+
+      <div style="padding-top:16px;border-top:1px solid var(--b);">
+        <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin:16px 0 12px;">Zona de peligro</p>
+        <button class="ghost-btn" style="color:var(--red);border-color:rgba(248,113,113,.25);" onclick="ui.deleteAccount()">Eliminar cuenta permanentemente</button>
+      </div>
       </div>
     </div>
   </div>
@@ -728,6 +745,7 @@
       <button class="modal-close" onclick="ui.closeSupport()" aria-label="Cerrar">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
+      <div class="modal-inner">
       <div class="modal-title">Soporte</div>
       <div class="modal-sub">Preguntas frecuentes sobre tu BAP ID.</div>
       <div class="faq-item">
@@ -750,6 +768,7 @@
         <div class="faq-q">¿Necesitas más ayuda?</div>
         <div class="faq-a">Escríbenos y te ayudamos con cualquier problema de tu cuenta.</div>
       </div>
+      </div>
     </div>
   </div>
 
@@ -760,7 +779,7 @@
       <span>BAP Studios</span>
     </div>
     <div class="footer-links">
-      <a href="javascript:void(0)" onclick="ui.scrollToSection('games')">Juegos</a>
+      <a href="bap_hub.html">BAP HUB</a>
       <a href="javascript:void(0)" onclick="ui.scrollToSection('about')">Sobre nosotros</a>
       <a href="javascript:void(0)" onclick="ui.showSupport()">Soporte</a>
       <a href="#">Privacidad</a>
@@ -795,6 +814,10 @@
     }
     function msg(id,text,type='err'){ const el=$(id); el.innerHTML=text; el.className='msg '+type; }
     function clearMsg(id){ const el=$(id); el.textContent=''; el.className='msg'; }
+    // Escapa texto controlado por el usuario (ej. su nombre) antes de insertarlo con innerHTML
+    function escapeHTML(str){
+      return String(str==null?'':str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
 
     function errES(code){
       return({'auth/user-not-found':'No existe una cuenta con ese email.','auth/wrong-password':'Contraseña incorrecta.','auth/invalid-credential':'Email o contraseña incorrectos.','auth/email-already-in-use':'Ya existe una cuenta con ese email.','auth/invalid-email':'El email no es válido.','auth/weak-password':'La contraseña es muy débil (mín. 8 caracteres).','auth/popup-closed-by-user':'Cerraste la ventana antes de terminar.','auth/network-request-failed':'Error de red. Revisa tu conexión.','auth/too-many-requests':'Demasiados intentos. Espera un momento.'})[code]||'Ocurrió un error. Intenta de nuevo.';
@@ -816,181 +839,131 @@
       }
     }
 
-    // ── Catalog of all BAP products ──
-    // Orden = orden de código BAP (fecha de creación). Para reordenar, mueve
-    // las entradas de lugar aquí — no hay que tocar el HTML en ningún lado.
-    // Los juegos sin nombre confirmado se muestran como "???".
+    // ── Productos con vinculación de cuenta real (usados solo por el Dashboard) ──
+    // El catálogo completo (con juegos no publicados, etc.) ahora vive en BAP HUB.
     const ALL_PRODUCTS = [
       {
-        bap: '#BAP001 · #BAP000',
         key: 'juego_principal',
-        type: 'juego',
         name: "Cup O'Clicker",
-        desc: 'Juego · Sanjay and Craig · incl. versión offline Classic (sin eventos)',
+        desc: 'Juego · Sanjay and Craig',
         icon: 'https://chibi.iitranq.co.uk/jpxBDQNU31LM.jpg',
         hasCode: true,
         url: 'https://fernandoaaa123.github.io/sanjay-and-craig-cup-o-clicker/'
       },
       {
-        bap: '#BAP002',
-        key: null,
-        type: 'juego',
-        name: 'Breadwinners: Bread Dash!',
-        desc: 'Juego · Runner infinito',
-        icon: 'https://upload.wikimedia.org/wikipedia/en/6/69/Breadwinners_title.png',
-        comingSoon: true,
-        url: '#'
-      },
-      {
-        bap: '#BAP003',
-        key: null,
-        type: 'juego',
-        name: '???',
-        desc: 'Juego · Adventure Time',
-        icon: null,
-        comingSoon: true,
-        url: '#'
-      },
-      {
-        bap: '#BAP004',
-        key: null,
-        type: 'juego',
-        name: 'Regular Show: Regular Day',
-        desc: 'Juego · Regular Show',
-        icon: null,
-        comingSoon: true,
-        url: '#'
-      },
-      {
-        bap: '#BAP005',
-        key: null,
-        type: 'juego',
-        name: 'Kick Buttowski: Extreme Stunt World',
-        desc: 'Juego · HTML perdido',
-        icon: null,
-        comingSoon: true,
-        url: '#'
-      },
-      {
-        bap: '#BAP006',
-        key: null,
-        type: 'juego',
-        name: 'Sanjay and Craig: Blackout Runner',
-        desc: 'Juego · Sanjay and Craig',
-        icon: null,
-        comingSoon: true,
-        url: '#'
-      },
-      {
-        bap: '#BAP007',
-        key: null,
-        type: 'juego',
-        name: "Breadwinners 'Night of The Living Bread': BREAD N' DREAD",
-        desc: 'Juego · Breadwinners',
-        icon: null,
-        comingSoon: true,
-        url: '#'
-      },
-      {
-        bap: '#BAP008',
-        key: null,
-        type: 'juego',
-        name: '???',
-        desc: 'Juego · Estilo Pokémon',
-        icon: null,
-        comingSoon: true,
-        url: '#'
-      },
-      {
-        bap: '#BAP009',
         key: 'grudgeball',
-        type: 'juego',
         name: 'Grudgeball Evolution',
         desc: 'Juego · Deportes · Regular Show',
         icon: 'https://chibi.iitranq.co.uk/mw7fgng37rnJ.png',
         hasCode: false,
-        alwaysConnected: true,
         url: 'https://fernandoaaa123.github.io/regular-show-grudgeball-evolution/'
       },
       {
-        bap: '#BAP010',
         key: 'nova',
-        type: 'app',
         name: 'Communiter',
         desc: 'App · Chat y comunidades',
         icon: 'https://chibi.iitranq.co.uk/4muuVXzlNQ4F.jpg',
         hasCode: false,
-        alwaysConnected: true,
         url: 'https://fernandoaaa123.github.io/nova/'
-      },
-      {
-        bap: '#BAP011',
-        key: null,
-        type: 'app',
-        name: 'Communiter Creator',
-        desc: 'App · Gestión de bots',
-        icon: null,
-        comingSoon: true,
-        url: '#'
-      },
-      {
-        bap: '#BAP012',
-        key: null,
-        type: 'juego',
-        name: "Michael Jackson's Moonwalker Anthology",
-        desc: 'Juego · Anthology',
-        icon: 'https://chibi.iitranq.co.uk/Rqgbstu7hiye.jpg',
-        comingSoon: true,
-        url: '#'
       }
     ];
 
-    // ── Íconos de respaldo si la imagen del producto falla en cargar ──
-    const PRODUCT_FALLBACK_SVG = {
-      app:   '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="4"/><path d="M6 10v4M4 12h4"/><circle cx="15" cy="10" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg>',
-      juego: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="6"/><line x1="7" y1="12" x2="11" y2="12"/><line x1="9" y1="10" x2="9" y2="14"/><circle cx="16" cy="10.5" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg>'
+    // ── Logros: catálogo por producto (usa las mismas "key" que ALL_PRODUCTS) ──
+    // id de cada logro = único en todo el proyecto (se usa como doc id en bap_achievement_stats)
+    const GAME_ACHIEVEMENTS = {
+      juego_principal: [
+        { id:'coc_first_click',  name:'Primer sorbo',    desc:'Haz tu primer click.', icon:'👆' },
+        { id:'coc_million',      name:'Millonario reptil', desc:'Alcanza 1,000,000 de puntos.', icon:'💰' },
+        { id:'coc_all_upgrades', name:'Todo comprado',   desc:'Compra todas las mejoras.', icon:'🏆' },
+      ],
+      grudgeball: [
+        { id:'gb_first_win', name:'Primer rencor', desc:'Gana tu primer partido.', icon:'🏀' },
+        { id:'gb_perfect',   name:'Partido perfecto', desc:'Gana sin recibir puntos.', icon:'💯' },
+      ],
+      nova: [
+        { id:'nova_first_msg', name:'Rompiendo el hielo', desc:'Envía tu primer mensaje.', icon:'💬' },
+      ],
     };
-    // Se llama desde el atributo onerror de <img> — evita anidar comillas dobles del SVG dentro del propio atributo HTML
-    function handleProductIconError(imgEl, type){
-      const wrap = imgEl.parentElement;
-      wrap.classList.add('empty');
-      wrap.innerHTML = PRODUCT_FALLBACK_SVG[type] || PRODUCT_FALLBACK_SVG.juego;
+    // Rareza estilo Google Play Juegos: por umbrales fijos de % de jugadores que lo tienen.
+    function rarityFromPct(pct){
+      if(pct < 1)  return 'ultra';
+      if(pct < 10) return 'rare';
+      if(pct < 50) return 'uncommon';
+      return 'common';
+    }
+    const RARITY_LABEL = { common:'Común', uncommon:'Poco común', rare:'Raro', ultra:'Ultra raro' };
+
+    let _totalUsersCache = null;
+    async function getTotalUsers(){
+      if(_totalUsersCache !== null) return _totalUsersCache;
+      try{
+        const snap = await db.collection('bap_users').count().get();
+        _totalUsersCache = Math.max(1, snap.data().count);
+      }catch(e){ _totalUsersCache = 1; } // fallback si el SDK no soporta count()
+      return _totalUsersCache;
     }
 
-    // ── Tarjeta de producto (HTML) reutilizada por landing y catálogo ──
-    function productCardHTML(p){
-      const iconHTML = p.icon
-        ? '<div class="product-icon"><img src="'+p.icon+'" alt="'+p.name+'" onerror="handleProductIconError(this,\''+p.type+'\')"></div>'
-        : '<div class="product-icon empty">'+(PRODUCT_FALLBACK_SVG[p.type]||PRODUCT_FALLBACK_SVG.juego)+'</div>';
-      const pillHTML = p.comingSoon
-        ? '<span class="product-pill soon">Pronto</span>'
-        : '<a class="product-pill" href="'+p.url+'" target="_blank" rel="noopener" style="text-decoration:none;">'+(p.type==='app'?'Abrir':'Jugar')+'</a>';
-      const bapTag = p.bap ? '<span class="product-bap">'+p.bap+'</span>' : '';
-      return '<div class="product-card">'+iconHTML
-        +'<div><div class="product-name">'+p.name+bapTag+'</div><div class="product-desc">'+p.desc+'</div></div>'
-        +pillHTML+'</div>';
+    async function renderAchievements(uid){
+      const wrap = document.getElementById('dash-achievements');
+      const entries = Object.entries(GAME_ACHIEVEMENTS).filter(([,list]) => list.length);
+      if(!entries.length){ wrap.innerHTML = '<div class="ach-empty">Todavía no hay logros configurados.</div>'; return; }
+
+      const [totalUsers, unlockedSnap] = await Promise.all([
+        getTotalUsers(),
+        db.collection('bap_users').doc(uid).collection('achievements').get()
+      ]);
+      const unlocked = new Set(unlockedSnap.docs.map(d => d.id));
+
+      const allIds = entries.flatMap(([,list]) => list.map(a => a.id));
+      const statSnaps = await Promise.all(allIds.map(id => db.collection('bap_achievement_stats').doc(id).get()));
+      const statMap = {};
+      statSnaps.forEach((s,i) => statMap[allIds[i]] = s.exists ? (s.data().unlockCount||0) : 0);
+
+      wrap.innerHTML = '';
+      entries.forEach(([key, list]) => {
+        const product = ALL_PRODUCTS.find(p => p.key === key);
+        const gotCount = list.filter(a => unlocked.has(a.id)).length;
+        const group = document.createElement('div');
+        group.className = 'ach-group';
+        const grid = document.createElement('div');
+        grid.className = 'ach-grid';
+        list.forEach(a => {
+          const isUnlocked = unlocked.has(a.id);
+          const pct = Math.min(100, (statMap[a.id]/totalUsers)*100);
+          const rarity = rarityFromPct(pct);
+          const el = document.createElement('div');
+          el.className = 'ach-badge' + (isUnlocked ? '' : ' locked');
+          el.innerHTML =
+            '<div class="ach-top"><div class="ach-icon">'+a.icon+'</div><div class="ach-name">'+a.name+'</div></div>'
+            +'<div class="ach-desc">'+(isUnlocked ? a.desc : '???') +'</div>'
+            +'<div class="ach-foot"><span class="ach-rarity '+rarity+'"><span class="rshape '+rarity+'"></span>'+RARITY_LABEL[rarity]+'</span>'
+            +'<span class="ach-pct">'+(pct<0.1&&statMap[a.id]>0?'<0.1':pct.toFixed(1))+'% lo tiene</span></div>';
+          grid.appendChild(el);
+        });
+        group.innerHTML = '<div class="ach-group-name">'+(product?product.name:key)+' <span>'+gotCount+'/'+list.length+'</span></div>';
+        group.appendChild(grid);
+        wrap.appendChild(group);
+      });
     }
 
-    const MORE_SOON_CARD =
-      '<div class="product-card"><div class="product-icon empty">+</div>'
-      +'<div><div class="product-name" style="color:var(--t3);">Más próximamente</div>'
-      +'<div class="product-desc">Nuevos títulos en camino</div></div>'
-      +'<span class="product-pill soon">Pronto</span></div>';
-
-    // Renderiza la grid de una categoría dentro de un contenedor por id
-    function renderProductGrid(containerId, type){
-      const el = document.getElementById(containerId);
-      if(!el) return;
-      const items = ALL_PRODUCTS.filter(p => p.type === type);
-      el.innerHTML = items.map(productCardHTML).join('') + MORE_SOON_CARD;
+    // ── Desbloquear un logro. Llamar desde cualquier juego/app del ecosistema BAP: ──
+    // misma firebaseConfig de este archivo + db.collection('bap_users')... funciona
+    // entre dominios porque las reglas de Firestore no dependen del origen HTTP.
+    async function unlockAchievement(uid, achId){
+      if(!uid || !achId) return false;
+      const userAchRef = db.collection('bap_users').doc(uid).collection('achievements').doc(achId);
+      const statRef = db.collection('bap_achievement_stats').doc(achId);
+      let unlockedNow = false;
+      await db.runTransaction(async tx => {
+        const already = await tx.get(userAchRef);
+        if(already.exists) return;
+        tx.set(userAchRef, { unlockedAt: firebase.firestore.FieldValue.serverTimestamp() });
+        tx.set(statRef, { unlockCount: firebase.firestore.FieldValue.increment(1) }, { merge:true });
+        unlockedNow = true;
+      });
+      return unlockedNow;
     }
-
-    function renderAllProductGrids(){
-      renderProductGrid('games-grid-juegos', 'juego');
-      renderProductGrid('games-grid-apps',   'app');
-      renderProductGrid('catalog-grid-juegos', 'juego');
-      renderProductGrid('catalog-grid-apps',   'app');
-    }
+    window.unlockAchievement = unlockAchievement;
 
     function renderDashboard(linkedGames) {
       const connEl  = document.getElementById('dash-connected');
@@ -1039,12 +1012,15 @@
           const row = document.createElement('div');
           row.className = 'linked-row';
           row.style.opacity = '.7';
+          const hint = p.hasCode
+            ? 'Abre el juego y vincula desde Ajustes'
+            : 'La vinculación con este producto llega pronto';
           row.innerHTML =
             '<div class="li-icon" style="filter:grayscale(1);opacity:.5;"><img src="'+p.icon+'" alt="'+p.name+'"></div>'
             +'<div class="li-info">'
               +'<div class="li-name" style="color:var(--t2);">'+p.name+'</div>'
               +'<div style="font-size:11px;color:var(--t3);">'+p.desc+'</div>'
-              +'<div style="font-size:11px;color:var(--t3);margin-top:2px;">Abre el juego y vincula desde Ajustes</div>'
+              +'<div style="font-size:11px;color:var(--t3);margin-top:2px;">'+hint+'</div>'
             +'</div>'
             +'<span class="li-pill" style="color:var(--t3);">No vinculado</span>';
           availEl.appendChild(row);
@@ -1088,6 +1064,9 @@
       if(user.photoURL){ av.innerHTML=`<img src="${user.photoURL}" alt="avatar">`; av.style.fontSize='0'; }
       else { av.textContent=name.charAt(0).toUpperCase(); }
 
+      // Solo aplica a cuentas de email/contraseña — las de Google ya vienen verificadas
+      $('verify-banner').style.display = (!user.emailVerified) ? 'flex' : 'none';
+
       let linkedGames={};
       try{
         const snap=await db.collection('bap_users').doc(user.uid).get();
@@ -1095,6 +1074,9 @@
       }catch(e){}
 
       renderDashboard(linkedGames);
+      renderAchievements(user.uid).catch(()=>{
+        document.getElementById('dash-achievements').innerHTML = '<div class="ach-empty">No se pudieron cargar los logros.</div>';
+      });
 
       // Ya no se fuerza una pantalla completa: si veníamos del login/registro,
       // se vuelve a la landing normal. El Dashboard es un overlay aparte que
@@ -1109,12 +1091,12 @@
       const navName=user.displayName||user.email.split('@')[0];
       const navAvatar=user.photoURL
         ? '<img src="'+user.photoURL+'" style="width:100%;height:100%;object-fit:cover;">'
-        : navName.charAt(0).toUpperCase();
+        : escapeHTML(navName.charAt(0).toUpperCase());
       navCtas.innerHTML=
         _pwaInstallBtnHtml()
         +'<button class="nav-btn ghost" onclick="ui.showDashboard()" style="display:flex;align-items:center;gap:8px;">'
         +'<div style="width:22px;height:22px;border-radius:50%;background:var(--s3);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;overflow:hidden;flex-shrink:0;">'+navAvatar+'</div>'
-        +navName.split(' ')[0]
+        +escapeHTML(navName.split(' ')[0])
         +'</button>'
         +'<button class="nav-btn solid" onclick="ui.showDashboard()">Mi BAP ID</button>';
 
@@ -1151,7 +1133,13 @@
       if(pass.length<8){ msg('r-msg','La contraseña debe tener al menos 8 caracteres.'); return; }
       if(code&&code.length!==12){ msg('r-msg','El código debe tener el formato XXXX-XX-XXXX.'); return; }
       load(true);
-      try{ const r=await auth.createUserWithEmailAndPassword(email,pass); await r.user.updateProfile({displayName:name}); await saveProfile(r.user,{name,code:code||null}); await showProfile(r.user); }
+      try{
+        const r=await auth.createUserWithEmailAndPassword(email,pass);
+        await r.user.updateProfile({displayName:name});
+        await saveProfile(r.user,{name,code:code||null});
+        r.user.sendEmailVerification().catch(()=>{});
+        await showProfile(r.user);
+      }
       catch(e){ msg('r-msg',errES(e.code)); } finally{ load(false); }
     }
     async function forgotPw(){
@@ -1232,20 +1220,103 @@
         document.body.classList.remove('no-scroll');
         if(location.hash.replace('#','')==='dashboard') location.hash='home';
       },
+      showManageAccount(){
+        const user=auth.currentUser;
+        if(!user) return;
+        $('m-name').value=user.displayName||'';
+        clearMsg('m-msg');
+        clearMsg('m-link-msg');
+        $('m-code').value='';
+        $('m-link-box').style.display='none';
+        $('manage-overlay').classList.add('open');
+        document.body.classList.add('no-scroll');
+        db.collection('bap_users').doc(user.uid).get().then(snap=>{
+          const linked = snap.exists && snap.data().linked_games && snap.data().linked_games.juego_principal;
+          if(!linked) $('m-link-box').style.display='block';
+        }).catch(()=>{});
+      },
+      closeManageAccount(){
+        $('manage-overlay').classList.remove('open');
+        if(!$('dashboard-overlay').classList.contains('open')&&!$('support-overlay').classList.contains('open'))
+          document.body.classList.remove('no-scroll');
+      },
+      async saveAccountName(){
+        const user=auth.currentUser;
+        if(!user) return;
+        const name=$('m-name').value.trim();
+        if(!name){ msg('m-msg','Escribe un nombre.'); return; }
+        load(true);
+        try{
+          await user.updateProfile({displayName:name});
+          await db.collection('bap_users').doc(user.uid).update({name});
+          $('p-name').textContent=name;
+          msg('m-msg','<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:4px;"><polyline points="20 6 9 17 4 12"/></svg>Nombre actualizado.','ok');
+        } catch(e){ msg('m-msg','No se pudo actualizar. Intenta de nuevo.'); }
+        finally{ load(false); }
+      },
+      async linkGameCode(){
+        const user=auth.currentUser;
+        if(!user) return;
+        clearMsg('m-link-msg');
+        const code=$('m-code').value.trim();
+        if(code.length!==12){ msg('m-link-msg','El código debe tener el formato XXXX-XX-XXXX.'); return; }
+        load(true);
+        try{
+          await db.collection('bap_users').doc(user.uid).update({'linked_games.juego_principal':code});
+          msg('m-link-msg','<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:4px;"><polyline points="20 6 9 17 4 12"/></svg>¡Vinculado! Se actualizará en tu panel.','ok');
+          setTimeout(()=>{ $('m-link-box').style.display='none'; },1200);
+        } catch(e){ msg('m-link-msg','No se pudo vincular. Revisa el código e intenta de nuevo.'); }
+        finally{ load(false); }
+      },
+      async sendPasswordReset(){
+        const user=auth.currentUser;
+        if(!user||!user.email){ toast('No se pudo enviar el email.'); return; }
+        load(true);
+        try{ await auth.sendPasswordResetEmail(user.email); toast('Email para cambiar tu contraseña enviado.'); }
+        catch(e){ toast('No se pudo enviar el email.'); }
+        finally{ load(false); }
+      },
+      async resendVerification(){
+        const user=auth.currentUser;
+        if(!user){ toast('Inicia sesión primero.'); return; }
+        if(user.emailVerified){ toast('Tu email ya está verificado.'); return; }
+        load(true);
+        try{ await user.sendEmailVerification(); toast('Te enviamos un email de verificación.'); }
+        catch(e){ toast('No se pudo enviar el email. Intenta en unos minutos.'); }
+        finally{ load(false); }
+      },
+      async deleteAccount(){
+        const user=auth.currentUser;
+        if(!user) return;
+        if(!window.confirm('Esto eliminará tu BAP ID de forma permanente. ¿Seguro que quieres continuar?')) return;
+        load(true);
+        try{
+          await db.collection('bap_users').doc(user.uid).delete();
+          await user.delete();
+          window.ui.closeManageAccount();
+          await doSignOut();
+          toast('Tu cuenta fue eliminada.');
+        } catch(e){
+          if(e.code==='auth/requires-recent-login')
+            toast('Por seguridad, cierra sesión, vuelve a iniciarla y repite el intento.');
+          else
+            toast('No se pudo eliminar la cuenta.');
+        } finally{ load(false); }
+      },
       openMyGames(){
         // "Mis juegos" del nav: si ya hay sesión, abre el Dashboard.
         // Si no, manda a iniciar sesión primero.
         if(_uid) window.ui.showDashboard();
         else window.ui.showAuth('login');
       },
-      showCatalog(){
-        $('catalog-overlay').classList.add('open');
-        document.body.classList.add('no-scroll');
+      toggleMobileMenu(){
+        const m=$('mobile-menu'), b=$('nav-hamburger');
+        const open=m.classList.toggle('open');
+        b.setAttribute('aria-expanded',open?'true':'false');
       },
-      closeCatalog(){
-        $('catalog-overlay').classList.remove('open');
-        if(!$('dashboard-overlay').classList.contains('open')&&!$('support-overlay').classList.contains('open'))
-          document.body.classList.remove('no-scroll');
+      closeMobileMenu(){
+        $('mobile-menu').classList.remove('open');
+        $('nav-hamburger').setAttribute('aria-expanded','false');
       },
       showSupport(){
         $('support-overlay').classList.add('open');
@@ -1253,7 +1324,7 @@
       },
       closeSupport(){
         $('support-overlay').classList.remove('open');
-        if(!$('dashboard-overlay').classList.contains('open')&&!$('catalog-overlay').classList.contains('open'))
+        if(!$('dashboard-overlay').classList.contains('open')&&!$('manage-overlay').classList.contains('open'))
           document.body.classList.remove('no-scroll');
       },
       showAuth(tab='login'){
@@ -1267,15 +1338,14 @@
       showLanding(){
         _setAppMode(false);
         window.ui.closeDashboard();
-        window.ui.closeCatalog();
         window.ui.closeSupport();
+        window.ui.closeManageAccount();
         location.hash='home';
         window.scrollTo({top:0,behavior:'smooth'});
       },
       scrollToSection(id){
         // Si estamos en modo "app" (auth) o hay un overlay abierto, primero volvemos a la landing
         window.ui.closeDashboard();
-        window.ui.closeCatalog();
         window.ui.closeSupport();
         _setAppMode(false);
         const go=()=>{
@@ -1296,7 +1366,31 @@
       $('auth-section').classList.toggle('visible',isApp);
     }
 
-    renderAllProductGrids();
+    // ── Cerrar overlays con click fuera del panel, o con la tecla Escape ──
+    const OVERLAY_CLOSERS={
+      'dashboard-overlay': ()=>window.ui.closeDashboard(),
+      'manage-overlay':    ()=>window.ui.closeManageAccount(),
+      'support-overlay':   ()=>window.ui.closeSupport()
+    };
+    document.querySelectorAll('.modal-overlay').forEach(overlay=>{
+      overlay.addEventListener('click', e=>{
+        if(e.target===overlay && OVERLAY_CLOSERS[overlay.id]) OVERLAY_CLOSERS[overlay.id]();
+      });
+    });
+    document.addEventListener('keydown', e=>{
+      if(e.key!=='Escape') return;
+      // Cierra primero el overlay que esté "más encima" (manage > dashboard/support)
+      if($('manage-overlay').classList.contains('open')) window.ui.closeManageAccount();
+      else if($('dashboard-overlay').classList.contains('open')) window.ui.closeDashboard();
+      else if($('support-overlay').classList.contains('open')) window.ui.closeSupport();
+      else if($('mobile-menu').classList.contains('open')) window.ui.closeMobileMenu();
+    });
+    // Cerrar el menú móvil al tocar fuera de él
+    document.addEventListener('click', e=>{
+      const menu=$('mobile-menu'), hamburger=$('nav-hamburger');
+      if(menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target))
+        window.ui.closeMobileMenu();
+    });
 
     // ── Ruteo simple por hash: permite refrescar/compartir #login, #register o #dashboard ──
     (function routeFromHash(){
