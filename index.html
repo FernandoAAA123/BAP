@@ -385,7 +385,7 @@
     .rshape.common{border-radius:50%;background:#9ca3af;}
     .rshape.uncommon{background:#a3e635;border-radius:2px;}
     .rshape.rare{background:#60a5fa;border-radius:1px;transform:rotate(45deg);}
-    .rshape.ultra{background:#c084fc;clip-path:polygon(50% 0%,90% 20%,100% 55%,50% 100%,0% 55%,10% 20%);}
+    .rshape.ultra{background:#c084fc;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
     .rshape.epic{background:#facc15;clip-path:polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%);}
     .rshape.legendary{background:#ef4444;clip-path:polygon(50% 0%,100% 35%,80% 100%,20% 100%,0% 35%);}
     .ach-rarity.common{color:var(--t2);border-color:var(--b2);}
@@ -876,9 +876,63 @@
     // id de cada logro = único en todo el proyecto (se usa como doc id en bap_achievement_stats)
     const GAME_ACHIEVEMENTS = {
       juego_principal: [
-        { id:'coc_first_click',  name:'Primer sorbo',    desc:'Haz tu primer click.', icon:'👆' },
-        { id:'coc_million',      name:'Millonario reptil', desc:'Alcanza 1,000,000 de puntos.', icon:'💰' },
-        { id:'coc_all_upgrades', name:'Todo comprado',   desc:'Compra todas las mejoras.', icon:'🏆' },
+        { id:'coc_ach_tutorial', name:'¡MAESTRO DEL VASO!', desc:'Completa el tutorial', icon:'https://img.icons8.com/fluency/48/star.png' },
+        { id:'coc_ach_w2', name:'HAMBRIENTO', desc:'Alcanza 500 alitas', icon:'https://img.icons8.com/fluency/48/fried-chicken.png' },
+        { id:'coc_ach_w3', name:'CLIENTE FIEL', desc:'Alcanza 5.000 alitas', icon:'https://img.icons8.com/fluency/48/waiter.png' },
+        { id:'coc_ach_w4', name:'PANZA LLENA', desc:'Alcanza 50.000 alitas', icon:'https://img.icons8.com/fluency/48/fire-element.png' },
+        { id:'coc_ach_w5', name:'LEYENDA LOCAL', desc:'Alcanza 500.000 alitas', icon:'https://img.icons8.com/fluency/48/star.png' },
+        { id:'coc_ach_w6', name:'DIOS DE LAS ALITAS', desc:'Alcanza 1.000.000 alitas', icon:'https://img.icons8.com/fluency/48/crown.png' },
+        { id:'coc_ach_w7', name:'REY DEL UNIVERSO', desc:'Alcanza 10.000.000 alitas', icon:'https://img.icons8.com/fluency/48/galaxy.png' },
+        { id:'coc_ach_w8', name:'ALITAS INFINITAS', desc:'Alcanza 100.000.000 alitas', icon:'https://img.icons8.com/fluency/48/infinity.png' },
+        { id:'coc_ach_b1', name:'AHORRADOR', desc:'Alcanza 10 billetes', icon:'https://img.icons8.com/fluency/48/wallet.png' },
+        { id:'coc_ach_b2', name:'BILLETERA GORDA', desc:'Alcanza 100 billetes', icon:'https://img.icons8.com/fluency/48/money-box.png' },
+        { id:'coc_ach_b3', name:'MILLONARIO', desc:'Alcanza 1.000 billetes', icon:'https://img.icons8.com/fluency/48/money-bag.png' },
+        { id:'coc_ach_a1', name:'COSECHADOR', desc:'Alcanza 10 arándanos', icon:'https://img.icons8.com/fluency/48/blueberry.png' },
+        { id:'coc_ach_a2', name:'MAESTRO ARANDANO', desc:'Alcanza 100 arándanos', icon:'https://img.icons8.com/fluency/48/farm.png' },
+        { id:'coc_ach_a3', name:'GRANJERO EPICO', desc:'Alcanza 1.000 arándanos', icon:'https://img.icons8.com/fluency/48/tractor.png' },
+        { id:'coc_ach_c1', name:'DEDO RAPIDO', desc:'Alcanza 1.000 sorbos', icon:'https://img.icons8.com/fluency/48/touch-screen.png' },
+        { id:'coc_ach_c2', name:'MARATONISTA', desc:'Alcanza 10.000 sorbos', icon:'https://img.icons8.com/fluency/48/running.png' },
+        { id:'coc_ach_c3', name:'SIN PARAR', desc:'Alcanza 100.000 sorbos', icon:'https://img.icons8.com/fluency/48/flash-on.png' },
+        { id:'coc_ach_m1', name:'POTENCIA PURA', desc:'Alcanza 1.000 multiplicador', icon:'https://img.icons8.com/fluency/48/power.png' },
+        { id:'coc_ach_m2', name:'SUPER POTENCIA', desc:'Alcanza 50.000 multiplicador', icon:'https://img.icons8.com/fluency/48/lightning-bolt.png' },
+        { id:'coc_ach_s1', name:'AMANTE DEL PICANTE', desc:'Alcanza 5 salsas picantes', icon:'https://img.icons8.com/fluency/48/chili-pepper.png' },
+        { id:'coc_ach_s2', name:'BOCA DE FUEGO', desc:'Alcanza 50 salsas picantes', icon:'https://img.icons8.com/fluency/48/fire-element.png' },
+        { id:'coc_ach_f1', name:'FRENETICO', desc:'Alcanza 1 frenesís', icon:'https://img.icons8.com/fluency/48/storm.png' },
+        { id:'coc_ach_f2', name:'MAESTRO DEL FRENESI', desc:'Alcanza 10 frenesís', icon:'https://img.icons8.com/fluency/48/tornado.png' },
+        { id:'coc_ach_p1', name:'PRIMER PRESTIGIO', desc:'Alcanza 1 prestigios', icon:'https://img.icons8.com/fluency/48/diamond.png' },
+        { id:'coc_ach_p2', name:'VETERANO', desc:'Alcanza 5 prestigios', icon:'https://img.icons8.com/fluency/48/crown.png' },
+        { id:'coc_ach_prestige', name:'ASCENDIDO', desc:'Alcanza 3 prestigios', icon:'https://img.icons8.com/fluency/48/galaxy.png' },
+        { id:'coc_ach_lvl5', name:'NIVEL 5', desc:'Alcanza el nivel 5', icon:'https://img.icons8.com/fluency/48/star.png' },
+        { id:'coc_ach_lvl10', name:'NIVEL 10', desc:'Alcanza el nivel 10', icon:'https://img.icons8.com/fluency/48/trophy.png' },
+        { id:'coc_ach_lvl25', name:'NIVEL 25', desc:'Alcanza el nivel 25', icon:'https://img.icons8.com/fluency/48/crown.png' },
+        { id:'coc_ach_friends1', name:'PRIMER AMIGO', desc:'Alcanza 1 amigos', icon:'https://img.icons8.com/fluency/48/conference-call.png' },
+        { id:'coc_ach_friends3', name:'GRUPO DE AMIGOS', desc:'Alcanza 3 amigos', icon:'https://img.icons8.com/fluency/48/group.png' },
+        { id:'coc_ach_tree1', name:'GRANJERO', desc:'Alcanza 1 cosechas del árbol', icon:'https://img.icons8.com/fluency/48/deciduous-tree.png' },
+        { id:'coc_ach_tree5', name:'ARBORICULTOR', desc:'Alcanza 5 cosechas del árbol', icon:'https://img.icons8.com/fluency/48/deciduous-tree.png' },
+        { id:'coc_ach_daily7', name:'SEMANA COMPLETA', desc:'Alcanza 7 días de racha diaria', icon:'https://img.icons8.com/fluency/48/calendar.png' },
+        { id:'coc_ach_missions5', name:'5 MISIONES', desc:'Alcanza 5 misiones completadas', icon:'https://img.icons8.com/fluency/48/task.png' },
+        { id:'coc_ach_combo10', name:'COMBO MASTER', desc:'Alcanza 10 combo máximo', icon:'https://img.icons8.com/fluency/48/lightning-bolt.png' },
+        { id:'coc_ach_gifts3', name:'GENEROSO', desc:'Alcanza 3 regalos enviados', icon:'https://img.icons8.com/fluency/48/gift.png' },
+        { id:'coc_ach_w9', name:'MAS ALLA DEL LIMITE', desc:'Alcanza 500.000.000 alitas', icon:'https://img.icons8.com/fluency/48/rocket.png' },
+        { id:'coc_ach_c4', name:'MAESTRO DEL CLICK', desc:'Alcanza 500.000 sorbos', icon:'https://img.icons8.com/fluency/48/power.png' },
+        { id:'coc_ach_b4', name:'MAGNATE', desc:'Alcanza 5.000 billetes', icon:'https://img.icons8.com/fluency/48/crown.png' },
+        { id:'coc_ach_combo20', name:'COMBO LEYENDA', desc:'Alcanza 20 combo máximo', icon:'https://img.icons8.com/fluency/48/storm.png' },
+        { id:'coc_ach_friends5', name:'PANDILLA', desc:'Alcanza 5 amigos', icon:'https://img.icons8.com/fluency/48/group.png' },
+        { id:'coc_ach_missions10', name:'10 MISIONES', desc:'Alcanza 10 misiones completadas', icon:'https://img.icons8.com/fluency/48/medal.png' },
+        { id:'coc_ach_daily14', name:'DOS SEMANAS', desc:'Alcanza 14 días de racha diaria', icon:'https://img.icons8.com/fluency/48/calendar.png' },
+        { id:'coc_ach_sauce_100', name:'INFERNO', desc:'Alcanza 100 salsas picantes', icon:'https://img.icons8.com/fluency/48/storm.png' },
+        { id:'coc_ach_spin1', name:'PRIMER GIRO', desc:'Alcanza 1 giros de ruleta', icon:'https://img.icons8.com/fluency/48/star.png' },
+        { id:'coc_ach_spin10', name:'RULETA EXPERTO', desc:'Alcanza 10 giros de ruleta', icon:'https://img.icons8.com/fluency/48/crown.png' },
+        { id:'coc_ach_spin50', name:'MAESTRO DE LA RULETA', desc:'Alcanza 50 giros de ruleta', icon:'https://img.icons8.com/fluency/48/galaxy.png' },
+        { id:'coc_ach_streak50', name:'RACHA DE FUEGO', desc:'Alcanza 50 racha de clics', icon:'https://img.icons8.com/fluency/48/fire-element.png' },
+        { id:'coc_ach_streak200', name:'RACHA LEGENDARIA', desc:'Alcanza 200 racha de clics', icon:'https://img.icons8.com/fluency/48/lightning-bolt.png' },
+        { id:'coc_ach_streak500', name:'IMPARABLE', desc:'Alcanza 500 racha de clics', icon:'https://img.icons8.com/fluency/48/infinity.png' },
+        { id:'coc_ach_chal1', name:'PRIMER DESAFIO', desc:'Alcanza 1 desafíos', icon:'https://img.icons8.com/fluency/48/sword.png' },
+        { id:'coc_ach_chal5', name:'GUERRERO', desc:'Alcanza 5 desafíos', icon:'https://img.icons8.com/fluency/48/shield.png' },
+        { id:'coc_ach_chal10', name:'CAMPEON', desc:'Alcanza 10 desafíos', icon:'https://img.icons8.com/fluency/48/crown.png' },
+        { id:'coc_ach_box1', name:'PRIMERA CAJA', desc:'Alcanza 1 cajas abiertas', icon:'https://img.icons8.com/fluency/48/gift.png' },
+        { id:'coc_ach_box10', name:'COLECCIONISTA', desc:'Alcanza 10 cajas abiertas', icon:'https://img.icons8.com/fluency/48/box.png' },
+        { id:'coc_ach_box50', name:'ADICTO A LAS CAJAS', desc:'Alcanza 50 cajas abiertas', icon:'https://img.icons8.com/fluency/48/crown.png' },
       ],
       grudgeball: [
         { id:'gb_first_win',       name:'PRIMERA VICTORIA',              desc:'Gana tu primera partida', icon:'🎉' },
@@ -910,9 +964,6 @@
         { id:'gb_event_halloween', name:'CUENTOS DE TERROR',             desc:'Completa la saga de Halloween', icon:'🎃' },
         { id:'gb_event_navidad',   name:'SALVASTE LA NAVIDAD',           desc:'Completa la saga de Navidad', icon:'🎄' },
       ],
-      nova: [
-        { id:'nova_first_msg', name:'Rompiendo el hielo', desc:'Envía tu primer mensaje.', icon:'💬' },
-      ],
     };
     // Rareza (remake propio, no el de Google Play Juegos): umbrales fijos.
     function rarityFromPct(pct){
@@ -931,7 +982,19 @@
       try{
         const snap = await db.collection('bap_users').count().get();
         _totalUsersCache = Math.max(1, snap.data().count);
-      }catch(e){ _totalUsersCache = 1; } // fallback si el SDK no soporta count()
+        return _totalUsersCache;
+      }catch(e){
+        console.warn('[BAP] count() falló, se usa conteo manual:', e.message);
+      }
+      // Fallback: contar documentos reales en vez de asumir 1 (evita que el % se
+      // infle a 100% cuando count() no está disponible/permitido).
+      try{
+        const snap = await db.collection('bap_users').get();
+        _totalUsersCache = Math.max(1, snap.size);
+      }catch(e2){
+        console.warn('[BAP] conteo manual también falló:', e2.message);
+        _totalUsersCache = 1;
+      }
       return _totalUsersCache;
     }
 
@@ -965,8 +1028,11 @@
           const rarity = rarityFromPct(pct);
           const el = document.createElement('div');
           el.className = 'ach-badge' + (isUnlocked ? '' : ' locked');
+          const iconHtml = /^https?:\/\//.test(a.icon)
+            ? '<img src="'+a.icon+'" style="width:16px;height:16px;'+(isUnlocked?'':'filter:grayscale(1);opacity:.6;')+'">'
+            : a.icon;
           el.innerHTML =
-            '<div class="ach-top"><div class="ach-icon">'+a.icon+'</div><div class="ach-name">'+a.name+'</div></div>'
+            '<div class="ach-top"><div class="ach-icon">'+iconHtml+'</div><div class="ach-name">'+a.name+'</div></div>'
             +'<div class="ach-desc">'+(isUnlocked ? a.desc : '???') +'</div>'
             +'<div class="ach-foot"><span class="ach-rarity '+rarity+'"><span class="rshape '+rarity+'"></span>'+RARITY_LABEL[rarity]+'</span>'
             +'<span class="ach-pct">'+(pct<0.1&&statMap[a.id]>0?'<0.1':pct.toFixed(1))+'% lo tiene</span></div>';
