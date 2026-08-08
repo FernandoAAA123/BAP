@@ -1264,7 +1264,14 @@
       try{ localStorage.removeItem('bap_id_uid'); }catch(e){}
     }
 
-    auth.onAuthStateChanged(user=>{ if(user) showProfile(user); });
+    // Antes esto llamaba a showProfile directo, sin pasar por saveProfile.
+    // Eso generaba una carrera contra el registro explícito (registerEmail/
+    // loginGoogle): si este listener ganaba, avisaba al juego y cerraba el
+    // popup ANTES de que el perfil terminara de guardarse en Firestore,
+    // dejando un documento "fantasma" (sin campos) en bap_users. saveProfile
+    // ya es idempotente (solo escribe si el documento no existe), así que
+    // llamarla aquí también no hace daño si el otro camino ya la llamó.
+    auth.onAuthStateChanged(async user=>{ if(user){ await saveProfile(user); showProfile(user); } });
 
     // ── PWA: Install prompt ───────────────────────────────────
     let _pwaPrompt=null;
@@ -1393,9 +1400,16 @@
           // sola al borrar el documento padre, y dejaría un documento
           // "fantasma" (en cursiva en la consola) que sigue contando en
           // las estadísticas de logros aunque la cuenta ya no exista.
+          // También se resta 1 del contador global de cada logro que tenía,
+          // para no dejar el % inflado para siempre (antes solo se sumaba,
+          // nunca se restaba al borrar una cuenta).
           const achSnap = await db.collection('bap_users').doc(user.uid).collection('achievements').get();
           const batch = db.batch();
-          achSnap.forEach(d => batch.delete(d.ref));
+          achSnap.forEach(d => {
+            batch.delete(d.ref);
+            const statRef = db.collection('bap_achievement_stats').doc(d.id);
+            batch.set(statRef, { unlockCount: firebase.firestore.FieldValue.increment(-1) }, { merge:true });
+          });
           if(!achSnap.empty) await batch.commit();
 
           await db.collection('bap_users').doc(user.uid).delete();
