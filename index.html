@@ -980,9 +980,11 @@
     // logros, para que el % baje solo en cuanto se registran usuarios
     // nuevos (antes se quedaba pegado con el número de la primera consulta
     // de la sesión).
-    async function getTotalUsers(){
+    // Solo cuenta a los usuarios conectados a ESE juego (game_links.<key>),
+    // no a todos los usuarios de BAP.
+    async function getTotalUsers(gameKey){
       try{
-        const snap = await db.collection('bap_users').count().get();
+        const snap = await db.collection('bap_users').where('game_links.'+gameKey,'==',true).count().get();
         return Math.max(1, snap.data().count);
       }catch(e){
         console.warn('[BAP] count() falló, se usa conteo manual:', e.message);
@@ -990,7 +992,7 @@
       // Fallback: contar documentos reales en vez de asumir 1 (evita que el % se
       // infle a 100% cuando count() no está disponible/permitido).
       try{
-        const snap = await db.collection('bap_users').get();
+        const snap = await db.collection('bap_users').where('game_links.'+gameKey,'==',true).get();
         return Math.max(1, snap.size);
       }catch(e2){
         console.warn('[BAP] conteo manual también falló:', e2.message);
@@ -1003,8 +1005,8 @@
       const entries = Object.entries(GAME_ACHIEVEMENTS).filter(([,list]) => list.length);
       if(!entries.length){ wrap.innerHTML = '<div class="ach-empty">Todavía no hay logros configurados.</div>'; return; }
 
-      const [totalUsers, unlockedSnap] = await Promise.all([
-        getTotalUsers(),
+      const [totalUsersByGame, unlockedSnap] = await Promise.all([
+        Promise.all(entries.map(([key]) => getTotalUsers(key))),
         db.collection('bap_users').doc(uid).collection('achievements').get()
       ]);
       const unlocked = new Set(unlockedSnap.docs.map(d => d.id));
@@ -1015,7 +1017,8 @@
       statSnaps.forEach((s,i) => statMap[allIds[i]] = s.exists ? (s.data().unlockCount||0) : 0);
 
       wrap.innerHTML = '';
-      entries.forEach(([key, list]) => {
+      entries.forEach(([key, list], idx) => {
+        const totalUsers = totalUsersByGame[idx];
         const product = ALL_PRODUCTS.find(p => p.key === key);
         const gotCount = list.filter(a => unlocked.has(a.id)).length;
         const group = document.createElement('div');
